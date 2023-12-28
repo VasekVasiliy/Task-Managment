@@ -1,0 +1,34 @@
+<!-- app/views/projects/new.html.erb -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создать новую задачу</title>
+</head>
+<body>
+<h2>Добавить задачу</h2>
+<%= form_with(model: [@project, @task], url: project_tasks_path(@project), method: :post) do |form| %>
+  <label for="task_name">Название задачи:</label>
+  <%= form.text_field :name, id: "task_name" %>
+
+  <label for="task_description">Описание задачи:</label>
+  <%= form.text_area :description, id: "task_description" %>
+
+  <label for="task_status">Статус задачи:</label>
+  <%= form.select :status, Task.statuses.keys.map { |status| [status.humanize, status] }, prompt: 'Выберите статус',id:"task_status" %>
+
+  <label for="task_deadline">Дедлайн:</label>
+  <%= form.date_field :deadline, id: "task_deadline" %>
+
+  <%= form.submit "Создать задачу" %>
+<% end %>
+
+<%= link_to 'Вернуться к списку проектов', projects_path %>
+</body>
+</html>
+
+
+
+</body>
+</html>

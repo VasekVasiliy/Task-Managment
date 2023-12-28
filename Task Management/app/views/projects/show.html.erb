@@ -1,0 +1,25 @@
+<!-- app/views/projects/show.html.erb -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @project.name %></title>
+</head>
+<body>
+<h1><%= @project.name %></h1>
+<p><%= @project.description %></p>
+
+<h2>Задачи</h2>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= link_to "#{task.name} - #{task.status}", project_task_path(id: task.id, project_id: @project.id) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Добавить задачу', new_project_task_path(project_id: @project.id) %>
+<%= link_to 'Вернуться к списку проектов', projects_path %>
+</body>
+</html>

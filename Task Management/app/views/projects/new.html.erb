@@ -1,0 +1,31 @@
+<!-- app/views/projects/new.html.erb -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создать новый проект</title>
+</head>
+<body>
+<h1>Создать новый проект</h1>
+
+<%= form_with(model: @project, url: projects_path, method: :post) do |form| %>
+  <label for="project_name">Название проекта:</label>
+  <%= form.text_field :name, id: "project_name" %>
+
+  <label for="project_description">Описание проекта:</label>
+  <%= form.text_area :description, id: "project_description" %>
+
+  <label for="project_start_date">Дата начала:</label>
+  <%= form.date_field :start_date, id: "project_start_date" %>
+
+  <label for="project_end_date">Дата завершения:</label>
+  <%= form.date_field :end_date, id: "project_end_date" %>
+
+  <%= form.submit "Создать проект" %>
+<% end %>
+
+
+<%= link_to 'Вернуться к списку проектов', projects_path %>
+</body>
+</html>
